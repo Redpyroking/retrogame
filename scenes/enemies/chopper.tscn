@@ -1,0 +1,126 @@
+[gd_scene load_steps=14 format=3 uid="uid://dvgljf4qv1kbj"]
+
+[ext_resource type="PackedScene" uid="uid://csw0n7r56ltg8" path="res://scenes/enemies/inherit/enemy_base.tscn" id="1_oby8a"]
+[ext_resource type="Texture2D" uid="uid://xr6c5m2sav27" path="res://assest/enemies/chopper.png" id="2_130ok"]
+[ext_resource type="Script" path="res://scripts/ememies/chopper.gd" id="2_aqoc2"]
+[ext_resource type="Shader" path="res://shader/player.gdshader" id="3_3j3l7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5l2yo"]
+resource_local_to_scene = true
+shader = ExtResource("3_3j3l7")
+shader_parameter/color_opacity = 0.0
+shader_parameter/main_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2eno"]
+atlas = ExtResource("2_130ok")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3dvue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2eno")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_78gwq"]
+radius = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ph2sm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_df6lf"]
+bg_color = Color(1, 0, 0.113725, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_chvxx"]
+font_size = 7
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o0mkk"]
+radius = 73.1642
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dkmql"]
+size = Vector2(271, 176)
+
+[node name="chopper" instance=ExtResource("1_oby8a")]
+script = ExtResource("2_aqoc2")
+max_health = 10
+speed = 30
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_5l2yo")
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_3dvue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+shape = SubResource("CircleShape2D_78gwq")
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="4"]
+target_position = Vector2(-11, 0)
+collision_mask = 4
+
+[node name="healthbar" type="ProgressBar" parent="." index="5"]
+visible = false
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = -6.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_ph2sm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_df6lf")
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="healthbar" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -11.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "5/5"
+label_settings = SubResource("LabelSettings_chvxx")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="change_direction" type="Timer" parent="." index="6"]
+autostart = true
+
+[node name="shoot_timer" type="Timer" parent="." index="7"]
+
+[node name="bullet_holder" type="Node" parent="." index="8"]
+
+[node name="detect_area" type="Area2D" parent="." index="9"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_area" index="0"]
+shape = SubResource("CircleShape2D_o0mkk")
+debug_color = Color(1, 0.32549, 0.258824, 0.419608)
+
+[node name="player_chase_area" type="Area2D" parent="." index="10"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_chase_area" index="0"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_dkmql")
+debug_color = Color(0.827451, 0.509804, 0, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="19"]
+path_desired_distance = 4.0
+avoidance_enabled = true
+
+[node name="nav_timer" type="Timer" parent="." index="20"]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="change_direction" to="." method="_on_change_direction_timeout"]
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="area_entered" from="detect_area" to="." method="_on_detect_area_area_entered"]
+[connection signal="area_exited" from="detect_area" to="." method="_on_detect_area_area_exited"]
+[connection signal="area_entered" from="player_chase_area" to="." method="_on_player_chase_area_area_entered"]
+[connection signal="area_exited" from="player_chase_area" to="." method="_on_player_chase_area_area_exited"]
+[connection signal="timeout" from="nav_timer" to="." method="_on_nav_timer_timeout"]

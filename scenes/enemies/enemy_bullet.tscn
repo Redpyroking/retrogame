@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://iy5sh6frv1t8"]
+
+[ext_resource type="Script" path="res://scripts/ememies/enemy_bullet.gd" id="1_fvebs"]
+[ext_resource type="Texture2D" uid="uid://oytq0ygbecvg" path="res://assest/enemies/chopper_bullet.png" id="1_nldxg"]
+[ext_resource type="Texture2D" uid="uid://bv2vqustudx40" path="res://assest/effect/small_exp.png" id="3_vhxgr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wgb7c"]
+radius = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5aptb"]
+atlas = ExtResource("3_vhxgr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aboit"]
+atlas = ExtResource("3_vhxgr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jjd0"]
+atlas = ExtResource("3_vhxgr")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xokdn"]
+atlas = ExtResource("3_vhxgr")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa1n1"]
+atlas = ExtResource("3_vhxgr")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_847yk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5aptb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aboit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jjd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xokdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa1n1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="enemy_bullet" type="Area2D"]
+collision_layer = 64
+collision_mask = 5
+script = ExtResource("1_fvebs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_nldxg")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wgb7c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_847yk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

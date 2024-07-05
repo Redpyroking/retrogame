@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0bwig34xod3c"]
+
+[ext_resource type="Script" path="res://scripts/menu/menu.gd" id="1_3kdaa"]
+[ext_resource type="FontFile" uid="uid://c7ajm6ewf0ydw" path="res://font/m5x7 by Daniel Linssen.ttf" id="1_symun"]
+[ext_resource type="Texture2D" uid="uid://bc6u5ksjjf7rr" path="res://assest/main_screen/screen.png" id="2_m1qxe"]
+
+[sub_resource type="FontVariation" id="FontVariation_8p2cs"]
+base_font = ExtResource("1_symun")
+
+[sub_resource type="Theme" id="Theme_xitj5"]
+default_font = SubResource("FontVariation_8p2cs")
+default_font_size = 100
+
+[sub_resource type="Theme" id="Theme_l0hdt"]
+default_font = SubResource("FontVariation_8p2cs")
+default_font_size = 100
+
+[sub_resource type="Theme" id="Theme_s2t22"]
+default_font = SubResource("FontVariation_8p2cs")
+default_font_size = 100
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_3kdaa")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 920.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.408696
+anchor_right = 0.65
+anchor_bottom = 0.633696
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme = SubResource("Theme_xitj5")
+text = "PLAY"
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SoundButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16875
+anchor_top = 0.582609
+anchor_right = 0.835156
+anchor_bottom = 0.807609
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme = SubResource("Theme_l0hdt")
+text = "SOUND : ON"
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.252344
+anchor_top = 0.746739
+anchor_right = 0.747656
+anchor_bottom = 0.971739
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme = SubResource("Theme_s2t22")
+text = "TIMER : ON"
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="foreground" type="Sprite2D" parent="Control"]
+position = Vector2(776, 272)
+scale = Vector2(3.23333, 2.76667)
+texture = ExtResource("2_m1qxe")
+
+[connection signal="pressed" from="Control/PlayButton" to="." method="_on_play_button_pressed"]

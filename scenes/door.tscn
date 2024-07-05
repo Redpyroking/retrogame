@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://dybrgs6ptfqt5"]
+
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_pd180"]
+[ext_resource type="Texture2D" uid="uid://c7w0hfqtjrvhd" path="res://assest/trophy.png" id="1_urtwj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2eppc"]
+
+[sub_resource type="Animation" id="Animation_7jkij"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qec3q"]
+resource_name = "default"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.7, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.984314, 1, 0, 1), Color(0, 1, 0.364706, 1), Color(0.0313726, 0, 1, 1), Color(0.439216, 1, 0.545098, 1), Color(0.988235, 0.866667, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v73hw"]
+_data = {
+"RESET": SubResource("Animation_7jkij"),
+"default": SubResource("Animation_qec3q")
+}
+
+[node name="door" type="Area2D"]
+script = ExtResource("1_pd180")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2eppc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_urtwj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v73hw")
+}
+autoplay = "default"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

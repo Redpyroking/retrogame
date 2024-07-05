@@ -1,0 +1,262 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnxk6reqla2lf"]
+
+[ext_resource type="Script" path="res://scripts/gui/item_box_screen.gd" id="1_kxj4v"]
+[ext_resource type="Texture2D" uid="uid://chwn0ihs8ldeo" path="res://assest/gui/character_box.png" id="3_1cmdf"]
+[ext_resource type="Texture2D" uid="uid://bbcklqi4bwetc" path="res://assest/items/armour_plate.png" id="3_mx350"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01rdx"]
+bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_80vkh"]
+texture = ExtResource("3_1cmdf")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vbsiw"]
+texture = ExtResource("3_1cmdf")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.54902, 0.54902, 0.54902, 1)
+
+[node name="item_box_screen" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_01rdx")
+script = ExtResource("1_kxj4v")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 640
+theme_override_constants/margin_bottom = 64
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_80vkh")
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 420
+theme_override_constants/margin_right = 100
+
+[node name="InfoContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 644
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="PanelContainer" type="MarginContainer" parent="InfoContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 130
+theme_override_constants/margin_top = 450
+theme_override_constants/margin_right = 130
+theme_override_constants/margin_bottom = 32
+
+[node name="Control" type="Control" parent="InfoContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="ItemTexture" type="Sprite2D" parent="InfoContainer/PanelContainer/Control"]
+texture_filter = 1
+position = Vector2(42, -274)
+scale = Vector2(10, 10)
+texture = ExtResource("3_mx350")
+
+[node name="Button" type="Button" parent="InfoContainer/PanelContainer/Control"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = -0.206522
+anchor_top = 0.368421
+anchor_right = 0.793478
+anchor_bottom = 1.5
+theme_override_styles/normal = SubResource("StyleBoxTexture_vbsiw")
+text = "EQUIP"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -1.33696
+anchor_top = -11.5789
+anchor_right = 1.96739
+anchor_bottom = -10.1053
+text = "--TEST--"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CharacterDescription" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.380435
+anchor_top = -9.94737
+anchor_right = 1.96739
+anchor_bottom = -8.05263
+text = "--TEST--"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="AbilityText" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -1.33696
+anchor_top = -7.84211
+anchor_right = -0.119565
+anchor_bottom = -6.36842
+offset_left = 1.52588e-05
+text = "ABILITY :"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AbilityName" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.380435
+anchor_top = -7.84211
+anchor_right = 0.836957
+anchor_bottom = -6.36842
+text = "--TEST--"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AbilityDescription" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.945652
+anchor_top = -6.57895
+anchor_right = 1.96739
+anchor_bottom = -5.10526
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="WeaponText" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -1.33696
+anchor_top = -4.68421
+anchor_right = -0.119565
+anchor_bottom = -3.21053
+offset_left = 1.52588e-05
+offset_top = -1.52588e-05
+offset_bottom = -1.52588e-05
+text = "WEAPON :"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BulletName" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.380435
+anchor_top = -4.68421
+anchor_right = 0.836957
+anchor_bottom = -3.21053
+offset_left = 1.52588e-05
+text = "--TEST--"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DamageText" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.945652
+anchor_top = -1.42105
+anchor_right = -0.51087
+anchor_bottom = 0.0526316
+offset_left = 1.52588e-05
+text = "DAMAGE :"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Damage" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.51087
+anchor_top = -1.42105
+anchor_right = -0.380435
+anchor_bottom = 0.0526316
+offset_left = 1.52588e-05
+text = "99
+"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeedText" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.206522
+anchor_top = -1.42105
+anchor_right = 0.228261
+anchor_bottom = 0.0526316
+offset_left = 1.52588e-05
+text = "SPEED :"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Speed" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = 0.228261
+anchor_top = -1.42105
+anchor_right = 0.358696
+anchor_bottom = 0.0526316
+offset_left = 1.52588e-05
+text = "99
+"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownText" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = 0.532609
+anchor_top = -1.42105
+anchor_right = 0.967391
+anchor_bottom = 0.0526316
+offset_left = 1.52588e-05
+text = "COOLDOWN :"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Cooldown" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = 1.1413
+anchor_top = -1.42105
+anchor_right = 1.27174
+anchor_bottom = 0.0526316
+offset_left = 1.52588e-05
+text = "99
+"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BulletDescription" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.380435
+anchor_top = -2.89474
+anchor_right = 1.96739
+anchor_bottom = -1.42105
+offset_left = 1.52588e-05
+text = "--TEST--
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="InfoContainer/PanelContainer/Control/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://blyiaew76iuoo"]
+
+[ext_resource type="Script" path="res://resource_scripts/ability.gd" id="1_5vuvs"]
+
+[resource]
+script = ExtResource("1_5vuvs")
+id_name = "dash"
+alias = "Dash"
+ability_dex = "003"
+description = "Dash at the direction of facing do 1 damage while dashing,
+do 5 damage if enemy is frozen."

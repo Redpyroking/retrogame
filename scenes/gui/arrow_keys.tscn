@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvyv6jrg8ec5f"]
+
+[ext_resource type="Texture2D" uid="uid://dtvwn2fasldkg" path="res://assest/gui/arrow.png" id="1_bh2fm"]
+
+[node name="arrow_keys" type="TextureButton"]
+texture_filter = 1
+anchors_preset = -1
+anchor_right = 0.0347222
+anchor_bottom = 0.0617284
+texture_normal = ExtResource("1_bh2fm")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true

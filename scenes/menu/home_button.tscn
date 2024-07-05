@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpd2ofqn4j8ca"]
+
+[ext_resource type="Texture2D" uid="uid://bc8gdw87dkjuk" path="res://assest/gui/home_button.png" id="1_a4kff"]
+[ext_resource type="Texture2D" uid="uid://1sqvqbfbqxxj" path="res://assest/gui/level_button_pressed.png" id="2_yobmj"]
+
+[node name="home_button" type="TouchScreenButton"]
+texture_filter = 1
+texture_normal = ExtResource("1_a4kff")
+texture_pressed = ExtResource("2_yobmj")

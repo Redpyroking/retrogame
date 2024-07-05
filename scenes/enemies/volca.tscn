@@ -1,0 +1,97 @@
+[gd_scene load_steps=13 format=3 uid="uid://bn1fxu2fj2t8t"]
+
+[ext_resource type="PackedScene" uid="uid://csw0n7r56ltg8" path="res://scenes/enemies/inherit/enemy_base.tscn" id="1_wu6tf"]
+[ext_resource type="Shader" path="res://shader/player.gdshader" id="2_jaavg"]
+[ext_resource type="Script" path="res://scripts/ememies/volca.gd" id="2_v5c0r"]
+[ext_resource type="Texture2D" uid="uid://c3sd41dp6xdhl" path="res://assest/enemies/volca.png" id="3_1y40h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g81kx"]
+resource_local_to_scene = true
+shader = ExtResource("2_jaavg")
+shader_parameter/color_opacity = 0.0
+shader_parameter/main_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqkcn"]
+atlas = ExtResource("3_1y40h")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_weovy"]
+atlas = ExtResource("3_1y40h")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0oeb3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqkcn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_weovy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7we8v"]
+size = Vector2(14, 12)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jils5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eivnl"]
+bg_color = Color(1, 0, 0.113725, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xnnj6"]
+font_size = 7
+
+[node name="volca" instance=ExtResource("1_wu6tf")]
+script = ExtResource("2_v5c0r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_g81kx")
+sprite_frames = SubResource("SpriteFrames_0oeb3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_7we8v")
+
+[node name="healthbar" type="ProgressBar" parent="." index="4"]
+visible = false
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = -6.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_jils5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eivnl")
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="healthbar" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -11.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "5/5"
+label_settings = SubResource("LabelSettings_xnnj6")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="explosion" parent="." index="5"]
+position = Vector2(0, 3)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="13"]
+
+[node name="firing_time" type="Timer" parent="." index="14"]
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="15"]
+enabled = false
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="firing_time" to="." method="_on_firing_time_timeout"]

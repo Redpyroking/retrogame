@@ -1,0 +1,135 @@
+[gd_scene load_steps=20 format=3 uid="uid://csw0n7r56ltg8"]
+
+[ext_resource type="Script" path="res://scripts/ememies/enemy_base.gd" id="1_nr2un"]
+[ext_resource type="Texture2D" uid="uid://bu34lnc4b7mek" path="res://assest/effect/big_exp.png" id="2_xlupy"]
+[ext_resource type="AudioStream" uid="uid://bb3i2hg37dhyf" path="res://sound/burn.wav" id="3_gxs7m"]
+[ext_resource type="AudioStream" uid="uid://t43is8ncmqsk" path="res://sound/enemy_hurt.wav" id="3_ug37p"]
+[ext_resource type="AudioStream" uid="uid://xn2ss4kajwfb" path="res://sound/explosion.wav" id="4_dcrqh"]
+[ext_resource type="AudioStream" uid="uid://c6oosilr6andg" path="res://sound/freeze.wav" id="4_qbodr"]
+[ext_resource type="AudioStream" uid="uid://djagqqxidiwbd" path="res://sound/gun_fire_enemy.wav" id="7_8nmem"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05mx6"]
+atlas = ExtResource("2_xlupy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63l0u"]
+atlas = ExtResource("2_xlupy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x7k7"]
+atlas = ExtResource("2_xlupy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbik8"]
+atlas = ExtResource("2_xlupy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8tjj"]
+atlas = ExtResource("2_xlupy")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ood83"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05mx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63l0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6x7k7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbik8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8tjj")
+}],
+"loop": false,
+"name": &"default",
+"speed": 14.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_21mpt"]
+colors = PackedColorArray(1, 0.0666667, 0, 1, 0.968627, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wdf4q"]
+gradient = SubResource("Gradient_21mpt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6ybcg"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 6, 1)
+linear_accel_min = 10.0
+linear_accel_max = 25.0
+scale_min = 0.1
+color_ramp = SubResource("GradientTexture1D_wdf4q")
+turbulence_noise_strength = 9.84
+
+[sub_resource type="Gradient" id="Gradient_moqau"]
+offsets = PackedFloat32Array(0, 0.52459, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0.421484, 0.840503, 1, 0.172549, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3x3ig"]
+gradient = SubResource("Gradient_moqau")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qwqkp"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 8.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 1.0
+radial_accel_max = 25.0
+scale_min = 0.1
+color_ramp = SubResource("GradientTexture1D_3x3ig")
+
+[node name="enemy_base" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 37
+script = ExtResource("1_nr2un")
+
+[node name="burn_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="freeze_timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="explosion" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_ood83")
+
+[node name="fire_particle" type="GPUParticles2D" parent="."]
+position = Vector2(0, 3)
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_6ybcg")
+lifetime = 0.5
+
+[node name="ice_particle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_qwqkp")
+one_shot = true
+
+[node name="burn_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gxs7m")
+
+[node name="freeze_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qbodr")
+
+[node name="hurt_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ug37p")
+
+[node name="exposion_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_dcrqh")
+
+[node name="gun_fire" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_8nmem")
+
+[connection signal="timeout" from="burn_timer" to="." method="_on_burn_timer_timeout"]
+[connection signal="timeout" from="freeze_timer" to="." method="_on_freeze_timer_timeout"]

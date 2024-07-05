@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://bpxwgatnjs6a0"]
+
+[ext_resource type="Resource" uid="uid://b78r0v5saemiq" path="res://resource/abilities/shielding.tres" id="1_5bgks"]
+[ext_resource type="Texture2D" uid="uid://7g5udc5x6vt3" path="res://assest/characters/002.png" id="1_bj6i0"]
+[ext_resource type="Script" path="res://resource_scripts/character.gd" id="2_tpvh6"]
+[ext_resource type="Resource" uid="uid://btjpprku3d860" path="res://resource/moves/moltcore.tres" id="2_un3fc"]
+
+[resource]
+script = ExtResource("2_tpvh6")
+id_name = "magine"
+alias = "Magine"
+dex = "002"
+description = "The outer layer seem to be very hot in temperature and stil the inner core is able to operate its body."
+ability = ExtResource("1_5bgks")
+animation = ExtResource("1_bj6i0")
+max_health = 4
+current_health = 4
+move_bullet = ExtResource("2_un3fc")

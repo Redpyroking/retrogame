@@ -1,0 +1,314 @@
+[gd_scene load_steps=13 format=3 uid="uid://csvxy7mkdc8oy"]
+
+[ext_resource type="Script" path="res://scripts/gui/character_change_screen.gd" id="1_48te1"]
+[ext_resource type="Resource" uid="uid://comhc2atn0ec0" path="res://resource/character_inventory.tres" id="2_48s27"]
+[ext_resource type="Texture2D" uid="uid://chwn0ihs8ldeo" path="res://assest/gui/character_box.png" id="3_j2i73"]
+[ext_resource type="Texture2D" uid="uid://c56wql2s7jdsc" path="res://assest/characters/001.png" id="4_e400d"]
+[ext_resource type="Texture2D" uid="uid://dkd80awuhgp5u" path="res://assest/moves/sunshot.png" id="5_5igi3"]
+[ext_resource type="AudioStream" uid="uid://blv82avpbmr38" path="res://sound/computer_boot.wav" id="6_8jnqf"]
+[ext_resource type="AudioStream" uid="uid://fg21phejw7w1" path="res://sound/computer_close.wav" id="7_8ll8k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01rdx"]
+bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_80vkh"]
+texture = ExtResource("3_j2i73")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_axusl"]
+texture = ExtResource("3_j2i73")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.690196, 0.690196, 0.690196, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_afkr4"]
+texture = ExtResource("3_j2i73")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.396078, 0.396078, 0.396078, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vbsiw"]
+texture = ExtResource("3_j2i73")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.54902, 0.54902, 0.54902, 1)
+
+[node name="CharacterChangeScreen" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_01rdx")
+script = ExtResource("1_48te1")
+character_inventory = ExtResource("2_48s27")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 640
+theme_override_constants/margin_bottom = 64
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_80vkh")
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 420
+theme_override_constants/margin_right = 100
+
+[node name="Control" type="Control" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HealButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/Control"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+anchor_left = 0.115169
+anchor_top = 0.846591
+anchor_right = 0.817416
+anchor_bottom = 1.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_axusl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_afkr4")
+text = "HEAL ALL"
+metadata/_edit_use_anchors_ = true
+
+[node name="InfoContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 644
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="CharacterTexture" type="Sprite2D" parent="InfoContainer"]
+texture_filter = 1
+position = Vector2(744, 168)
+scale = Vector2(5, 5)
+texture = ExtResource("4_e400d")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="PanelContainer" type="MarginContainer" parent="InfoContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 130
+theme_override_constants/margin_top = 450
+theme_override_constants/margin_right = 130
+theme_override_constants/margin_bottom = 32
+
+[node name="Control" type="Control" parent="InfoContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="InfoContainer/PanelContainer/Control"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+anchor_left = 0.185897
+anchor_top = 0.896774
+anchor_right = 0.801282
+anchor_bottom = 1.07097
+theme_override_styles/normal = SubResource("StyleBoxTexture_vbsiw")
+text = "CHANGE"
+metadata/_edit_use_anchors_ = true
+
+[node name="CharacterName" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.275641
+anchor_top = -1.32258
+anchor_right = 0.0641026
+anchor_bottom = -1.24839
+text = "--TEST--"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CharacterDescription" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = 0.108974
+anchor_top = -1.29677
+anchor_right = 1.49359
+anchor_bottom = -0.935484
+text = "--TEST--"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="AbilityText" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.224359
+anchor_top = -0.909677
+anchor_right = -0.00961538
+anchor_bottom = -0.829032
+offset_left = 1.52588e-05
+text = "ABILITY :"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AbilityName" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = 0.0320513
+anchor_top = -0.909677
+anchor_right = 1.25
+anchor_bottom = -0.835484
+text = "--TEST--"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AbilityDescription" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.224359
+anchor_top = -0.806452
+anchor_right = 1.54487
+anchor_bottom = -0.496774
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BulletTexture" type="Sprite2D" parent="InfoContainer/PanelContainer/Control"]
+texture_filter = 1
+position = Vector2(-30, -154)
+scale = Vector2(5, 5)
+texture = ExtResource("5_5igi3")
+
+[node name="WeaponText" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.224359
+anchor_top = -0.393548
+anchor_right = 0.0576923
+anchor_bottom = -0.319355
+offset_left = 1.52588e-05
+offset_top = -1.52588e-05
+offset_bottom = -1.52588e-05
+text = "WEAPON :"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BulletName" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = 0.0576923
+anchor_top = -0.393548
+anchor_right = 0.240385
+anchor_bottom = -0.319355
+offset_left = 1.52588e-05
+text = "--TEST--"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BulletDescription" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.198718
+anchor_top = -0.290323
+anchor_right = 1.54487
+anchor_bottom = 0.0193548
+offset_left = 1.52588e-05
+text = "--TEST--
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="DamageText" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = -0.224359
+anchor_top = 0.0451613
+anchor_right = 0.0320513
+anchor_bottom = 0.119355
+offset_left = 1.52588e-05
+text = "DAMAGE :"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Damage" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = 0.0320512
+anchor_top = 0.0451613
+anchor_right = 0.163462
+anchor_bottom = 0.119355
+offset_left = 1.52588e-05
+text = "99
+"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeedText" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = 0.358974
+anchor_top = 0.0451613
+anchor_right = 0.541667
+anchor_bottom = 0.119355
+offset_left = 1.52588e-05
+text = "SPEED :"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Speed" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = 0.544872
+anchor_top = 0.0451613
+anchor_right = 0.676282
+anchor_bottom = 0.119355
+offset_left = 1.52588e-05
+text = "99
+"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownText" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = 0.929487
+anchor_top = 0.0516129
+anchor_right = 1.36538
+anchor_bottom = 0.125806
+offset_left = 1.52588e-05
+text = "COOLDOWN :"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Cooldown" type="Label" parent="InfoContainer/PanelContainer/Control"]
+layout_mode = 2
+anchor_left = 1.27885
+anchor_top = 0.0516129
+anchor_right = 1.41026
+anchor_bottom = 0.125806
+offset_left = 1.52588e-05
+text = "99
+"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="on_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_8jnqf")
+
+[node name="off_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_8ll8k")
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/Control/HealButton" to="." method="_on_heal_button_pressed"]
+[connection signal="pressed" from="InfoContainer/PanelContainer/Control/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,93 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxtajjt5vxvvk"]
+
+[ext_resource type="Texture2D" uid="uid://dvofpjmmlebur" path="res://assest/gui/selected_character.png" id="1_1g6mn"]
+[ext_resource type="Texture2D" uid="uid://chwn0ihs8ldeo" path="res://assest/gui/character_box.png" id="2_7bs6g"]
+[ext_resource type="Script" path="res://scripts/gui/item_selector.gd" id="2_qmsid"]
+[ext_resource type="Texture2D" uid="uid://bbcklqi4bwetc" path="res://assest/items/armour_plate.png" id="3_k8f33"]
+[ext_resource type="Texture2D" uid="uid://bpwxoasbv8ymg" path="res://assest/items/impact_shield.png" id="4_ro8db"]
+[ext_resource type="Texture2D" uid="uid://c4iklr86onmkd" path="res://assest/items/power_charm.png" id="5_qvfhq"]
+[ext_resource type="Texture2D" uid="uid://b1pql3wu0qkc8" path="res://assest/items/regen_charm.png" id="6_rybna"]
+[ext_resource type="Texture2D" uid="uid://cyf8cxv8kdryt" path="res://assest/items/stone_of_heart.png" id="7_m8wyp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ljvmn"]
+texture = ExtResource("2_7bs6g")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k6ikp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_k8f33")
+}],
+"loop": true,
+"name": &"001",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ro8db")
+}],
+"loop": true,
+"name": &"002",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qvfhq")
+}],
+"loop": true,
+"name": &"003",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_rybna")
+}],
+"loop": true,
+"name": &"004",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_m8wyp")
+}],
+"loop": true,
+"name": &"005",
+"speed": 5.0
+}]
+
+[node name="ItemSelector" type="TextureButton"]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = -1
+anchor_right = 0.0555556
+anchor_bottom = 0.0987654
+mouse_default_cursor_shape = 2
+toggle_mode = true
+texture_pressed = ExtResource("1_1g6mn")
+stretch_mode = 0
+script = ExtResource("2_qmsid")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0.603922, 0.603922, 0.603922, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.28882e-05
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ljvmn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(32, 32)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_k6ikp")
+animation = &"005"

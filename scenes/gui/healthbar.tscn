@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce812me8m1n7x"]
+
+[ext_resource type="Texture2D" uid="uid://do3sjk6j7ea5o" path="res://assest/gui/heart.png" id="1_5bcyl"]
+[ext_resource type="Script" path="res://scripts/gui/healthbar.gd" id="2_5jva6"]
+
+[node name="healthbar" type="TextureRect"]
+texture_filter = 1
+texture_repeat = 2
+anchors_preset = -1
+anchor_right = 0.0555556
+anchor_bottom = 0.0987654
+offset_right = -16.0
+offset_bottom = -24.0
+texture = ExtResource("1_5bcyl")
+stretch_mode = 1
+script = ExtResource("2_5jva6")
+metadata/_edit_use_anchors_ = true

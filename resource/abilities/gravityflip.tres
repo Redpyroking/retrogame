@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://ds5sqxcte14x8"]
+
+[ext_resource type="Script" path="res://resource_scripts/ability.gd" id="1_dkdyo"]
+
+[resource]
+script = ExtResource("1_dkdyo")
+id_name = "gravityflip"
+alias = "Gravity Flip"
+ability_dex = "005"
+description = "While attach to  a surface user can change gravity to upside down."

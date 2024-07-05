@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://rqqumqhh53jj"]
+
+[ext_resource type="Texture2D" uid="uid://b6tgemnnorxwu" path="res://assest/gui/level_button.png" id="1_xfxj7"]
+[ext_resource type="Texture2D" uid="uid://1sqvqbfbqxxj" path="res://assest/gui/level_button_pressed.png" id="2_rc60m"]
+[ext_resource type="Theme" uid="uid://caskxd3jdb5cl" path="res://label_theme.tres" id="3_o5xef"]
+[ext_resource type="Script" path="res://scripts/menu/level_button.gd" id="3_rp255"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ym0u"]
+outline_size = 1
+outline_color = Color(0.121569, 0.121569, 0.121569, 1)
+shadow_size = 3
+
+[node name="lv1" type="TouchScreenButton"]
+texture_filter = 1
+position = Vector2(160, 192)
+scale = Vector2(12, 12)
+texture_normal = ExtResource("1_xfxj7")
+texture_pressed = ExtResource("2_rc60m")
+script = ExtResource("3_rp255")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.0625
+anchor_right = 0.9375
+anchor_bottom = 0.75
+theme = ExtResource("3_o5xef")
+text = "99"
+label_settings = SubResource("LabelSettings_3ym0u")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

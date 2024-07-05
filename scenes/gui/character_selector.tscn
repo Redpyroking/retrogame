@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://drvl6vhk70ghl"]
+
+[ext_resource type="Texture2D" uid="uid://dvofpjmmlebur" path="res://assest/gui/selected_character.png" id="1_5rh6j"]
+[ext_resource type="Script" path="res://scripts/gui/CharacterSelector.gd" id="1_mjqcd"]
+[ext_resource type="SpriteFrames" uid="uid://fwlwkloqm5y6" path="res://assest/characters_spritesheet.tres" id="2_kqg82"]
+[ext_resource type="Texture2D" uid="uid://chwn0ihs8ldeo" path="res://assest/gui/character_box.png" id="3_i5thj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ljvmn"]
+texture = ExtResource("3_i5thj")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+
+[node name="CharacterSelector" type="TextureButton"]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = -1
+anchor_right = 0.0555556
+anchor_bottom = 0.0987654
+mouse_default_cursor_shape = 2
+toggle_mode = true
+texture_pressed = ExtResource("1_5rh6j")
+stretch_mode = 0
+script = ExtResource("1_mjqcd")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0.603922, 0.603922, 0.603922, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.28882e-05
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ljvmn")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(32, 32)
+scale = Vector2(3.5, 3.5)
+sprite_frames = ExtResource("2_kqg82")
+animation = &"001"

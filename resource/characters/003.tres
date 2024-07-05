@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://bro6xnvg8cllg"]
+
+[ext_resource type="Resource" uid="uid://blyiaew76iuoo" path="res://resource/abilities/dash.tres" id="1_vikrj"]
+[ext_resource type="Texture2D" uid="uid://b6whcemmw8ws8" path="res://assest/characters/003.png" id="2_yx6hd"]
+[ext_resource type="Resource" uid="uid://bmpov50oj6txr" path="res://resource/moves/icepin.tres" id="3_ecyli"]
+[ext_resource type="Script" path="res://resource_scripts/character.gd" id="4_ih2hl"]
+
+[resource]
+script = ExtResource("4_ih2hl")
+id_name = "ninwu"
+alias = "Ninwu"
+dex = "003"
+description = "It seems friendly however it was design to be an assasin."
+ability = ExtResource("1_vikrj")
+animation = ExtResource("2_yx6hd")
+max_health = 7
+current_health = 7
+move_bullet = ExtResource("3_ecyli")

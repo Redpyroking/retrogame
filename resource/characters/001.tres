@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://cd8p6qxkt5nol"]
+
+[ext_resource type="Texture2D" uid="uid://c56wql2s7jdsc" path="res://assest/characters/001.png" id="1_hpd0r"]
+[ext_resource type="Resource" uid="uid://buvb711rhwqsq" path="res://resource/abilities/enrage.tres" id="1_rxskj"]
+[ext_resource type="Resource" uid="uid://d1sdv6h8vqt86" path="res://resource/moves/sunshot.tres" id="2_kjqwp"]
+[ext_resource type="Script" path="res://resource_scripts/character.gd" id="3_v2ajw"]
+
+[resource]
+script = ExtResource("3_v2ajw")
+id_name = "hoverhead"
+alias = "Hoverhead"
+dex = "001"
+description = "It seem to be calm in nature,however in battlefield things can turn out to be different."
+ability = ExtResource("1_rxskj")
+animation = ExtResource("1_hpd0r")
+max_health = 7
+current_health = 7
+move_bullet = ExtResource("2_kjqwp")

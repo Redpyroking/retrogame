@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://ct531weo4xy3e"]
+
+[ext_resource type="PackedScene" uid="uid://csw0n7r56ltg8" path="res://scenes/enemies/inherit/enemy_base.tscn" id="1_y4y50"]
+[ext_resource type="Script" path="res://scripts/ememies/spikey.gd" id="2_7lgm6"]
+[ext_resource type="Texture2D" uid="uid://xs67dupbjomq" path="res://assest/enemies/spikey.png" id="2_11ati"]
+[ext_resource type="Shader" path="res://shader/player.gdshader" id="2_ye3q0"]
+[ext_resource type="FontFile" uid="uid://c7ajm6ewf0ydw" path="res://font/m5x7 by Daniel Linssen.ttf" id="5_llikf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o7rt1"]
+resource_local_to_scene = true
+shader = ExtResource("2_ye3q0")
+shader_parameter/color_opacity = 0.0
+shader_parameter/main_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ortwb"]
+atlas = ExtResource("2_11ati")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex0x3"]
+atlas = ExtResource("2_11ati")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pdonc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ortwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex0x3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0w3c"]
+size = Vector2(12, 12)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ssdln"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8s5qp"]
+bg_color = Color(1, 0, 0.113725, 1)
+
+[node name="spikey" instance=ExtResource("1_y4y50")]
+script = ExtResource("2_7lgm6")
+max_health = 15
+speed = 100
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_o7rt1")
+sprite_frames = SubResource("SpriteFrames_pdonc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_s0w3c")
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="2"]
+target_position = Vector2(-10, 0)
+collision_mask = 4
+
+[node name="groundRayCast2D" type="RayCast2D" parent="." index="3"]
+position = Vector2(-8, 5)
+target_position = Vector2(0, 10)
+collision_mask = 4
+
+[node name="healthbar" type="ProgressBar" parent="." index="4"]
+visible = false
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = -6.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_ssdln")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8s5qp")
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="healthbar" index="0"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -11.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_llikf")
+theme_override_font_sizes/font_size = 14
+text = "5/5"
+
+[node name="explosion" parent="." index="7"]
+position = Vector2(0, 4)

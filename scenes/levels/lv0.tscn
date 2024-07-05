@@ -1,0 +1,309 @@
+[gd_scene load_steps=28 format=3 uid="uid://cxolficf0n5gp"]
+
+[ext_resource type="PackedScene" uid="uid://vnr2egfxh3rf" path="res://scenes/player.tscn" id="1_6wdst"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_ntb81"]
+[ext_resource type="Resource" uid="uid://cd8p6qxkt5nol" path="res://resource/characters/001.tres" id="2_j10cr"]
+[ext_resource type="Texture2D" uid="uid://5ygy8jrw2iea" path="res://assest/tileset_blue.png" id="3_ci2bc"]
+[ext_resource type="Script" path="res://scripts/gui/CanvasLayer.gd" id="5_3gy4h"]
+[ext_resource type="Texture2D" uid="uid://drdq06wx7fgfq" path="res://assest/enemies/spike.png" id="5_w81el"]
+[ext_resource type="PackedScene" uid="uid://ce812me8m1n7x" path="res://scenes/gui/healthbar.tscn" id="6_jjhmg"]
+[ext_resource type="PackedScene" uid="uid://csvxy7mkdc8oy" path="res://scenes/gui/character_change_screen.tscn" id="7_a58c0"]
+[ext_resource type="PackedScene" uid="uid://dmkld4v8bn1rd" path="res://scenes/gui/character_button.tscn" id="8_2iq37"]
+[ext_resource type="Texture2D" uid="uid://cci4cvjo0l0ue" path="res://assest/computer.png" id="9_mwirl"]
+[ext_resource type="Texture2D" uid="uid://dtvwn2fasldkg" path="res://assest/gui/arrow.png" id="10_jkkcj"]
+[ext_resource type="FontFile" uid="uid://c7ajm6ewf0ydw" path="res://font/m5x7 by Daniel Linssen.ttf" id="11_cdrlu"]
+[ext_resource type="PackedScene" uid="uid://bf6lhb8b5pmn4" path="res://scenes/computer.tscn" id="11_g8oha"]
+[ext_resource type="PackedScene" uid="uid://dgowg6adbatb5" path="res://scenes/pickup.tscn" id="12_75pvb"]
+[ext_resource type="Resource" uid="uid://bywro5phodty3" path="res://resource/characters/005.tres" id="13_rafnd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3kip"]
+texture = ExtResource("3_ci2bc")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_1/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_1/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_1/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_1/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_1/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_1/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_1/angular_velocity = 0.0
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_1/angular_velocity = 0.0
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_1/angular_velocity = 0.0
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_1/angular_velocity = 0.0
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_1/angular_velocity = 0.0
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_1/angular_velocity = 0.0
+4:1/0 = 0
+4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_0/angular_velocity = 0.0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_1/angular_velocity = 0.0
+3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_1/angular_velocity = 0.0
+4:2/0 = 0
+4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_0/angular_velocity = 0.0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_1/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_amjo5"]
+resource_name = "spike"
+texture = ExtResource("5_w81el")
+texture_region_size = Vector2i(15, 16)
+0:0/0 = 0
+0:0/0/z_index = -1
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_1/angular_velocity = 0.0
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-0.125, -1.125, 7.14331, 5.85354, 8, 8, -8, 8, -8, 6.54803)
+
+[sub_resource type="TileSet" id="TileSet_guo5w"]
+physics_layer_0/collision_layer = 4
+physics_layer_1/collision_layer = 2
+sources/0 = SubResource("TileSetAtlasSource_i3kip")
+sources/1 = SubResource("TileSetAtlasSource_amjo5")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iafn3"]
+size = Vector2(180, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwiex"]
+size = Vector2(180, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3ky6"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qv6pi"]
+load_path = "res://.godot/imported/sunshot.png-2155df6ae5e365946d7754e76b60b911.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bfbu"]
+
+[sub_resource type="FontVariation" id="FontVariation_8p2cs"]
+base_font = ExtResource("11_cdrlu")
+
+[sub_resource type="Theme" id="Theme_0aq7f"]
+default_font = SubResource("FontVariation_8p2cs")
+
+[sub_resource type="FontVariation" id="FontVariation_m12g0"]
+base_font = ExtResource("11_cdrlu")
+
+[sub_resource type="Theme" id="Theme_xyoj6"]
+default_font = SubResource("FontVariation_m12g0")
+default_font_size = 110
+
+[node name="lv0" type="Node2D"]
+script = ExtResource("1_ntb81")
+
+[node name="ObjectLayer" type="Node2D" parent="."]
+
+[node name="player" parent="ObjectLayer" instance=ExtResource("1_6wdst")]
+position = Vector2(160, 125)
+character = ExtResource("2_j10cr")
+
+[node name="TileMap" type="TileMap" parent="ObjectLayer"]
+texture_filter = 1
+tile_set = SubResource("TileSet_guo5w")
+format = 2
+layer_0/name = "wall"
+
+[node name="bulletholder" type="Node2D" parent="ObjectLayer"]
+
+[node name="enemy_holder" type="Node2D" parent="ObjectLayer"]
+
+[node name="Computers" type="Node2D" parent="ObjectLayer"]
+
+[node name="computer" parent="ObjectLayer/Computers" instance=ExtResource("11_g8oha")]
+position = Vector2(360, 144)
+
+[node name="pickups" type="Node2D" parent="ObjectLayer"]
+
+[node name="pickup" parent="ObjectLayer/pickups" instance=ExtResource("12_75pvb")]
+position = Vector2(288, 145)
+item_carry = ExtResource("13_rafnd")
+
+[node name="door" type="Node2D" parent="ObjectLayer"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("5_3gy4h")
+
+[node name="UpPanel" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.113043
+grow_horizontal = 2
+color = Color(0.145098, 0.145098, 0.145098, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="DownPanel" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.869179
+anchor_right = 1.0
+anchor_bottom = 0.999613
+offset_top = 0.355713
+offset_bottom = 0.355713
+color = Color(0.145098, 0.145098, 0.145098, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="healthbar" parent="CanvasLayer" instance=ExtResource("6_jjhmg")]
+anchor_left = 0.00625
+anchor_top = 0.0173913
+anchor_right = 0.05625
+anchor_bottom = 0.0869565
+offset_top = 8.0
+offset_right = 0.0
+offset_bottom = 8.0
+
+[node name="CharacterChangeScreen" parent="CanvasLayer" instance=ExtResource("7_a58c0")]
+visible = false
+
+[node name="computerButton" parent="CanvasLayer" instance=ExtResource("8_2iq37")]
+visible = false
+anchor_left = 0.0208333
+anchor_top = 0.037037
+anchor_right = 0.0763889
+anchor_bottom = 0.135802
+offset_left = 1165.33
+offset_top = -27.074
+offset_right = 1165.33
+offset_bottom = -27.074
+texture_normal = ExtResource("9_mwirl")
+
+[node name="ActionButton" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 195.0
+offset_bottom = 195.0
+
+[node name="left" type="TouchScreenButton" parent="CanvasLayer/ActionButton"]
+texture_filter = 1
+position = Vector2(24, 718)
+rotation = -1.5708
+scale = Vector2(6, 6)
+texture_normal = ExtResource("10_jkkcj")
+shape = SubResource("RectangleShape2D_iafn3")
+
+[node name="right" type="TouchScreenButton" parent="CanvasLayer/ActionButton"]
+texture_filter = 1
+position = Vector2(257, 622)
+rotation = 1.5708
+scale = Vector2(6, 6)
+texture_normal = ExtResource("10_jkkcj")
+shape = SubResource("RectangleShape2D_jwiex")
+
+[node name="jump" type="TouchScreenButton" parent="CanvasLayer/ActionButton"]
+texture_filter = 1
+position = Vector2(1160, 616)
+scale = Vector2(6, 6)
+texture_normal = ExtResource("10_jkkcj")
+shape = SubResource("RectangleShape2D_b3ky6")
+
+[node name="bullet" type="TouchScreenButton" parent="CanvasLayer/ActionButton"]
+texture_filter = 1
+position = Vector2(1032, 632)
+scale = Vector2(8, 8)
+texture_normal = SubResource("CompressedTexture2D_qv6pi")
+shape = SubResource("RectangleShape2D_4bfbu")
+
+[node name="Label" type="Label" parent="CanvasLayer/ActionButton/bullet"]
+anchors_preset = -1
+anchor_left = -0.875
+anchor_top = -0.875
+anchor_right = 2.0
+anchor_bottom = 2.0
+offset_left = -0.2
+offset_top = -1.2
+offset_right = -0.2
+offset_bottom = -1.2
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0aq7f")
+text = "1.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="time_label" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.478125
+anchor_top = 0.128261
+anchor_right = 0.571094
+anchor_bottom = 0.227174
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_xyoj6")
+text = "0.0.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="update_character" from="CanvasLayer/CharacterChangeScreen" to="ObjectLayer/player" method="_on_character_change_screen_update_character"]
+[connection signal="pressed" from="CanvasLayer/computerButton" to="CanvasLayer/CharacterChangeScreen" method="_on_computer_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionButton/left" to="ObjectLayer/player" method="_on_left_pressed"]
+[connection signal="released" from="CanvasLayer/ActionButton/left" to="ObjectLayer/player" method="_on_left_released"]
+[connection signal="pressed" from="CanvasLayer/ActionButton/right" to="ObjectLayer/player" method="_on_right_pressed"]
+[connection signal="released" from="CanvasLayer/ActionButton/right" to="ObjectLayer/player" method="_on_right_released"]
+[connection signal="pressed" from="CanvasLayer/ActionButton/jump" to="ObjectLayer/player" method="_on_jump_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionButton/bullet" to="ObjectLayer/player" method="_on_bullet_pressed"]

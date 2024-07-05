@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://csvxy7mkdc8oy"]
+
+[ext_resource type="Script" path="res://scripts/gui/character_change_screen.gd" id="1_48te1"]
+[ext_resource type="Resource" uid="uid://comhc2atn0ec0" path="res://resource/character_inventory.tres" id="2_48s27"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01rdx"]
+bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6wqq"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 1)
+border_width_left = 32
+border_width_top = 32
+border_width_right = 32
+border_width_bottom = 32
+border_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a28l6"]
+bg_color = Color(0.215686, 0.215686, 0.215686, 1)
+
+[node name="CharacterChangeScreen" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_01rdx")
+script = ExtResource("1_48te1")
+character_inventory = ExtResource("2_48s27")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 640
+theme_override_constants/margin_bottom = 64
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x6wqq")
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/h_separation = 28
+theme_override_constants/v_separation = 28
+columns = 7
+
+[node name="InfoContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 644
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="Texture" type="Sprite2D" parent="InfoContainer"]
+texture_filter = 1
+position = Vector2(872, 201)
+scale = Vector2(16, 16)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Label" type="Label" parent="InfoContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="MarginContainer" parent="InfoContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 130
+theme_override_constants/margin_top = 450
+theme_override_constants/margin_right = 130
+theme_override_constants/margin_bottom = 32
+
+[node name="Button" type="Button" parent="InfoContainer/PanelContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_a28l6")
+text = "CHANGE"
